@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/AyushiGupta-11/Jenkins.git'
+            }
+        }
+        
+        stage('Compile Java Code') {
+            steps {
+                sh 'javac HelloWorld.java'
+            }
+        }
+
+        stage('Run Java Application') {
+            steps {
+                sh 'java HelloWorld'
+            }
+        }
+    }
+}
