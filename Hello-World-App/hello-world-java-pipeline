@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'openjdk:11'  // Pulls OpenJDK 11 Docker image
+        }
+    }
 
     stages {
         stage('Clone Repository') {
@@ -10,14 +14,15 @@ pipeline {
         
         stage('Compile Java Code') {
             steps {
-                sh 'javac Hello-World.java'
+                sh 'javac HelloWorld.java'
             }
         }
 
         stage('Run Java Application') {
             steps {
-                sh 'java Hello-World'
+                sh 'java HelloWorld'
             }
         }
     }
 }
+
